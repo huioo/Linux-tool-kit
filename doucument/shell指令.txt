@@ -1,0 +1,583 @@
+
+
+
+
+bc (简单计算器) {
+	[dmtsai@study ~]$ bc
+	# 现在进入到bc这个软件的工作环境当中。尝试输入资料，在bc程式中进行运算的动作，但是输入的资料也需要符合bc的要求才行。
+	1+2+3+4		# 加法
+	10
+	7-8+3		# 减法
+	2
+	10*52		# 乘法
+	520
+	10/3		# 除法
+	3
+	10%3		# 取余
+	1
+	10/100
+	0			# bc预设仅输出整数，如果要输出小数点下位数，那么就必须要执行scale={number}，number是小数点位数的意思
+	scale=3		# 设置显示小数点位数
+	11/100		# 除法
+	.110
+	11%100		# 设置小数点位数后，取余操作
+	0
+	scale=-1	# 设置错误
+	Runtime warning (func=(main), adr=4): negative scale, set to 0
+	quit 		# 离开
+
+}
+
+
+
+cal (日历) {
+	cal（calendar）这个命令可以做的事情有很多。
+	cal 2018 ： 显示整年的月历情况。
+	cal 这个指令的语法为：cal [month] [year]。
+
+	[dmtsai@study ~]$ cal
+		 April 2018       
+	Su Mo Tu We Th Fr Sa  
+	 1  2  3  4  5  6  7  
+	 8  9 10 11 12 13 14  
+	15 16 17 18 19 20 21  
+	22 $<2>23$<2> 24 25 26 27 28  
+	29 30 
+	
+	[dmtsai@study ~]$ cal 4 2018
+		 April 2018       			# 显示2018年4月的月历
+	Su Mo Tu We Th Fr Sa  
+	 1  2  3  4  5  6  7  
+	 8  9 10 11 12 13 14  
+	15 16 17 18 19 20 21  
+	22 $<2>23$<2> 24 25 26 27 28
+	
+	[dmtsai@study ~]$ cal 13 2018
+	cal: 13 is neither a month number (1..12) nor a name  	# 提示13月不是一个月份
+
+}
+
+
+
+cat (读取纯文字文件,ASCII) {
+
+}
+
+
+
+cd (切换工作目录，当前所在目录位置) {
+
+	[dmtsai@study ~]$ su -  				# 先切换身份成为 root
+	语法：
+	[root@study ~]# cd [相對路徑或絕對路徑]
+	
+	[root@study ~]# cd ~dmtsai				# 切换到使用者 dmtsai 的家目录，即/home/dmtsai
+	
+	[root@study dmtsai]# cd ~				# 回到自己的家目录，即当前用户的家目录，此时为/root
+	
+	[root@study ~]# cd						# 没有加上任何路径，也还是代表回到自己家目录的意思
+	
+	[root@study ~]# cd ..					# 去到目前的上层目录，即 /root 的上层目录
+	
+	[root@study /]# cd -					# 
+	
+	[root@study ~]# cd /var/spool/mail		# 直接指定要去的完整路径名称
+	
+	[root@study mail]# cd ../postfix		# 相对路径的写法，由/var/spool/mail 去到/var/spool/postfix
+
+	[dmtsai@study ~]$ cd test
+	
+	[dmtsai@study test]$  					# 切换工作目录到test
+
+}
+
+
+
+chgrp (改变文件或目录所属群组) {
+	语法：
+	[root@study ~]# chgrp [-R] dirname/filename ...
+	选项和参数：
+		-R：进行递回（recursive）的持续变更，即连同此目录下的所有档案、目录都更新成为这个群组的意思。常常用在变更某一目录内所有档案的情况。
+	
+	范例：
+	[root@study ~]# chgrp users initial-setup-ks.cfg
+	[root@study ~]# ls -l
+	-rw-r--r--. 1 root users 1864 May  4 18:01 initial-setup-ks.cfg
+	
+	[root@study ~]# chgrp testing initial-setup-ks.cfg
+	chgrp: invalid group:  'testing'			 # 发生错误讯息，找不到此群组名
+}
+
+
+
+chmod (改变文件或目录的权限属性) {
+	语法：
+	chmod [-R] xyz 文件或目录
+	选项与参数：
+	xyz : 就是刚刚提到的数字类型的权限属性，为rwx 属性数值的相加。
+	-R：进行递回（recursive）的持续变更，即连同次目录下的所有档案都会变更。
+
+	chmod  u,g,o,a  +(加入),-(除去),=(設定)  r,w,x	档案或目录
+	
+	范例：
+	[root@study ~]# ls -al .bashrc
+	-rw-r--r--. 1 root root 176 Dec 29  2013 .bashrc		# 644
+	[root@study ~]# chmod 777 .bashrc
+	[root@study ~]# ls -al .bashrc
+	-rwxrwxrwx. 1 root root 176 Dec 29  2013 .bashrc		# 777
+
+	[root@study ~]# chmod  u=rwx,go=rx  .bashrc		# 设定权限为 -rwxr-xr-x
+	# 注意喔！那个 u=rwx,go=rx 是连在一起的，中间并沒有任何空白字元！
+	[root@study ~]# ls -al .bashrc
+	-rwxr-xr-x. 1 root root 176 Dec 29  2013 .bashrc
+	
+	[root@study ~]# ls -al .bashrc
+	-rwxr-xr-x. 1 root root 176 Dec 29  2013 .bashrc
+	[root@study ~]# chmod  a+w  .bashrc				# 只增加每个人均可写入的权限
+	[root@study ~]# ls -al .bashrc
+	-rwxrwxrwx. 1 root root 176 Dec 29  2013 .bashrc
+			
+	[root@study ~]# chmod  a-x  .bashrc				# 取消所有人的可执行权限
+	[root@study ~]# ls -al .bashrc
+	-rw-rw-rw-. 1 root root 176 Dec 29  2013 .bashrc
+	[root@study ~]# chmod 644 .bashrc  				# 測試完畢得要改回來喔！	
+
+}
+
+
+
+chown (改变文件或目录所属用户或所属群组) {
+
+	语法：
+	[root@study ~]# chown [-R] 账号名称 档案或目录
+	[root@study ~]# chown [-R] 账号名称：群组名称 档案或目录
+	选项与参数：
+	-R：进行递回（recursive）的持续变更，即连同次目录下的所有档案都变更
+
+	范例：将 initial-setup-ks.cfg 的拥有者改为bin这个账号
+	[root@study ~]# chown bin initial-setup-ks.cfg
+	[root@study ~]# ls -l
+	-rw-r--r--. 1 bin  users 1864 May  4 18:01 initial-setup-ks.cfg
+
+	范例：将 initial-setup-ks.cfg 的拥有者与群組改回为root：
+	[root@study ~]# chown root:root initial-setup-ks.cfg
+	[root@study ~]# ls -l
+	-rw-r--r--. 1 root root 1864 May  4 18:01 initial-setup-ks.cfg
+}
+
+
+
+cp (复制文档) {
+	http://linux.vbird.org/linux_basic/0220filemanager.php#cp
+
+	语法：
+	[root@study ~]# cp [-adfilprsu] 來源檔(source) 目標檔(destination)
+	[root@study ~]# cp [options] source1 source2 source3 .... directory
+	
+	选项与参数：
+	-a  ：相当于 -dr --preserve=all 的意思，至于 dr 请参考下列说明；(常用)
+	-d  ：若来源档为连结档的属性（link file），则复制连结档属性而非档案本身；
+	-f  ：为强制(force)的意思，若目标档案已经存在且无法开启，则移除后再尝试一次；
+	
+	-i  ：若目标档（destination）已经存在时，在覆盖时会先询问动作的进行（常用）
+	-l  ：进行硬式连结（hard link）的连结档建立，而非复制档案本身
+	
+	-p  ：连同档案的属性（权限、用户、时间）一起复制过去，而非使用预设属性(备份常用)
+	
+	-r  ：递归持续复制，用于目录的复制行为（常用）
+	
+	-s  ：复制称为符号连结档 (symbolic link)，亦即『捷径』档案；
+	-u  ：destination 比 source 旧才更新 destination，或 destination 不存在的情況下才复制
+	
+	--preserve=all ：除了 -p 的权限相关参数外，还加入 SELinux 的属性, links, xattr 等也复制了。
+	最后需要注意的，如果来源档有2个以上，则最后一个目的档一定是『目录』才行！
+
+}
+
+D:\heiniubao\scripts\\
+
+date (日期，时区) {
+	[dmtsai@study ~]$ date
+	Mon Apr 23 19:07:00 CST 2018		# 显示2018年的CST时区，星期一，四月等
+	
+	[dmtsai@study ~]$ date   +%Y/%m/%d
+	2018/04/23							# 显示特定格式的日期，使用date的格式化输出功能
+	
+	[dmtsai@study ~]$ date   +%H:%M
+	19:10
+
+}
+
+
+
+echo (显示、打印信息/字符) {
+	范例：
+	[root@study ~]# echo $PATH				# 打印环境变量 PATH
+	/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+
+	范例：
+	[root@study ~]# exit    				# 由之前的 su - 離開，變回原本的帳號！或再取得一個終端機皆可！
+	[dmtsai@study ~]$ echo $PATH
+	/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/dmtsai/.local/bin:/home/dmtsai/bin
+	# 記不記得我們前一章說過，目前 /bin 是連結到 /usr/bin 當中的喔！
+
+}
+
+
+
+halt (关机相关) {
+	[root@study ~]# halt  			# 系统停止，屏幕可能会保留 系统已经停止的讯息
+
+}
+
+
+
+info (查询指令用法或文件格式) {
+	按鍵					進行工作
+	空白鍵					向下翻一頁
+	[Page Down]				向下翻一頁
+	[Page Up]				向上翻一頁
+	[tab]					在 node 之間移動，有 node 的地方，通常會以 * 顯示。
+	[Enter]					當游標在 node 上面時，按下 Enter 可以進入該 node 。
+	b						移動游標到該 info 畫面當中的第一個 node 處
+	e						移動游標到該 info 畫面當中的最後一個 node 處
+	n						前往下一個 node 處
+	p						前往上一個 node 處
+	u						向上移動一層
+	s(/)					在 info page 當中進行搜尋
+	h, ?					顯示求助選單
+	q						結束這次的 info page
+
+	[dmtsai@study ~]$ info info
+	File: dir,      Node: Top,      This is the top of the INFO tree.
+
+	This is the Info main menu (aka directory node).
+	A few useful Info commands:
+
+	  'q' quits;
+	  '?' lists all Info commands;
+	  'h' starts the Info tutorial;
+	  'mTexinfo RET' visits the Texinfo manual, etc.
+
+	* Menu:
+
+	Basics
+	* Common options: (coreutils)Common options.
+	* Coreutils: (coreutils).       Core GNU (file, text, shell) utilities.
+	* Date input formats: (coreutils)Date input formats.
+	* Ed: (ed).                     The GNU line editor
+	* File permissions: (coreutils)File permissions.
+									Access modes.
+	* Finding files: (find).        Operating on files matching certain criteria.
+
+	C++ libraries
+	* autosprintf: (autosprintf).   Support for printf format strings in C++.
+
+	Compression
+	* Gzip: (gzip).                 General (de)compression of files (lzw).
+
+	Development
+	* libffi: (libffi).             Portable foreign-function interface library.
+
+	Editors
+	* nano: (nano).                 Small and friendly text editor.
+
+	General Commands
+	* Screen: (screen).             Full-screen window manager.
+	
+	······
+
+}
+
+
+
+last (读取资料性文件,data) {
+	root@heiniupiwik:/home/heiniu# last /var/log/wtmp
+
+	wtmp begins Mon Apr  2 15:17:51 2018
+
+	root@heiniupiwik:/home/heiniu# cat /var/log/wtmp
+	# 乱码
+	
+}
+
+
+
+locale (列出系统语言环境) {
+	[dmtsai@study ~]$ locale
+	LANG=en_US.UTF-8					# 语言语系的输出
+	LC_CTYPE="en_US.UTF-8"				# 底下为许多资讯的输出使用的特别预习
+	LC_NUMERIC="en_US.UTF-8"
+	LC_TIME="en_US.UTF-8"				# 时间方面的语系资料
+	LC_COLLATE="en_US.UTF-8"
+	LC_MONETARY="en_US.UTF-8"
+	LC_MESSAGES="en_US.UTF-8"
+	LC_PAPER="en_US.UTF-8"
+	LC_NAME="en_US.UTF-8"
+	LC_ADDRESS="en_US.UTF-8"
+	LC_TELEPHONE="en_US.UTF-8"
+	LC_MEASUREMENT="en_US.UTF-8"
+	LC_IDENTIFICATION="en_US.UTF-8"
+	LC_ALL=								# 全部的资料同步更新的设定值
+
+}
+
+
+
+ls (显示文件名及相关属性) {
+	语法：
+	[root@study ~]# ls [-aAdfFhilnrRSt] 文件名或目录名称 ..
+	[root@study ~]# ls [--color={never,auto,always}] 文件名或目录名称 ..
+	[root@study ~]# ls [--full-time] 文件名或目录名称 ..
+	
+	选项与参数：
+	-a  ：全部的档案，连同隐藏档（开头为 . 的档案）一起列出来（常用）
+	-A  ：全部的档案，连同隐藏档，但不包括 . 与 .. 这两个目录
+	-d  ：仅列出目录本身，而不是列出目录內的档案资料(常用)
+	
+	-f  ：直接列出结果，而不进行排序 (ls 预设会以档名排序！)
+	-F  ：根据档案、目录等资讯，给予附加资料结构，例如：
+		  *: 代表可执行档； /:代表目录； =:代表 socket 档案； |:代表 FIFO 档案；
+		  
+	-h  ：将档案容量以人类较易读的方式（例如GB，KB，KB等等）列出来；
+	-i  ：列出 inode 号码；
+	
+	-l  ：长资料串列出，包含档案的属性与权限等等资料（常用）
+	
+	-n  ：列出 UID 与 GID 而非使用者与群组的名称 
+	-r  ：将排序结果反向输出，例如：原本档名由小到大，反向则为由大到小；
+	-R  ：连同子目录內容一起列出來，等于该目录下的所有档案都会显示出來；
+	
+	-S  ：以档案容量大小排序，而不是档名排序
+	-t  ：以档案时间前后排序，而不是档名排序
+	
+	--color=never  ：不要依据档案特性给予颜色显示；
+	--color=always ：显示颜色
+	--color=auto   ：让系统自行依据设定来判断是否给予颜色
+	--full-time    ：以完整时间模式 (包含年、月、日、时、分) 输出
+	--time={atime,ctime} ：输出 access 时间或改变权限属性时间（ctime）
+						   而非内容变更时间（modification time）	
+
+}
+
+
+
+man (查看指令的操作说明) {
+	[dmtsai@study ~]$ man date
+	DATE(1)                                             User Commands                                                      DATE(1)
+
+	NAME
+		   date - print or set the system date and time
+
+	SYNOPSIS
+		   date [OPTION]... [+FORMAT]
+		   date [-u|--utc|--universal] [MMDDhhmm[[CC]YY][.ss]]
+
+	DESCRIPTION
+		   Display the current time in the given FORMAT, or set the system date.
+
+		   Mandatory arguments to long options are mandatory for short options too.
+
+		   -d, --date=STRING
+				  display time described by STRING, not 'now'
+
+		   -f, --file=DATEFILE
+				  like --date; once for each line of DATEFILE
+
+		   -I[FMT], --iso-8601[=FMT]
+				  output  date/time  in  ISO  8601  format.   FMT='date'  for  date  only  (the  default),  'hours', 'minutes', 'seconds', or 'ns' for date and time to the indicated precision.  Example:
+				  2006-08-14T02:34:56-0600
+
+		   -R, --rfc-2822
+				  output date and time in RFC 2822 format.  Example: Mon, 14 Aug 2006 02:34:56 -0600
+
+	······
+}
+
+
+
+mkdir (创建新目录) {
+	[root@study ~]# mkdir [-mp] 目录名称
+	选项与参数：
+	-m ：设定档案的权限。直接设定，不需要看预设权限(umask)的脸色
+	-p : 帮助你直接将所需要的目录（包含上层目录）递归创建
+	
+
+	范例：
+	[root@study ~]# cd /tmp
+	[root@study tmp]# mkdir test    					# 建立一名为 test 的新目录
+	[root@study tmp]# mkdir test1/test2/test3/test4
+	mkdir: cannot create directory ‘test1/test2/test3/test4’: No such file or directory
+	# 話說，系統告訴我們，沒可能建立這個目錄啊！就是沒有目錄才要建立的！見鬼嘛？
+	[root@study tmp]# mkdir -p test1/test2/test3/test4
+	# 原來是要建 test4 上層沒先建 test3 之故！加了這個 -p 的選項，可以自行幫你建立多層目錄！
+
+	范例：
+	[root@study tmp]# mkdir -m 711 test2				# 建立权限为rwx--x--x的目录
+	[root@study tmp]# ls -ld test*
+	drwxr-xr-x. 2 root   root  6 Jun  4 19:03 test
+	drwxr-xr-x. 3 root   root 18 Jun  4 19:04 test1
+	drwx--x--x. 2 root   root  6 Jun  4 19:05 test2
+	# 仔細看上面的權限部分，如果沒有加上 -m 來強制設定屬性，系統會使用預設屬性。
+	# 那麼你的預設屬性為何？這要透過底下介紹的 umask 才能瞭解喔！ ^_^
+
+}
+
+
+
+nano (文本编辑器) {
+	
+	指数符号（^）代表键盘（Ctrl）按键；符号（M-）代表键盘（Alt）按键；
+	
+	[dmtsai@study ~]$ nano text.txt
+	  GNU nano 2.5.3                                                        File: text.txt  
+
+	  
+	
+                                                                                                [ New File ]
+	^G Get Help      ^O Write Out     ^W Where Is      ^K Cut Text      ^J Justify       ^C Cur Pos       ^Y Prev Page     M-\ First Line   M-W WhereIs Next ^^ Mark Text     M-} Indent Text  M-U Undo
+	^X Exit          ^R Read File     ^\ Replace       ^U Uncut Text    ^T To Spell      ^_ Go To Line    ^V Next Page     M-/ Last Line    M-] To Bracket   M-^ Copy Text    M-{ Unindent TextM-E Redo
+	
+	Ctrl+G：取得线上说明（帮助）；
+	Ctrl+X：离开nano软件，若有修改过文件会提示是否需要存储；
+	Ctrl+O：存储文件，若有权限的话就能够存储文件了；
+	Ctrl+R：从其他文件读入数据，可以将某个文件的内容粘贴在本文件中；
+	Ctrl+W：搜寻字符串；
+	Ctrl+C：显示目前游标所在处的行数与列数等咨询；
+	Ctrl+_：可以直接输入行号，让游标移动到该行；
+	Alt+Y：校正语法功能开启或关闭（按一下开，按一下关）；
+	Alt+M：支持鼠标移动游标；
+
+	
+}
+
+
+
+poweroff (关机相关) {
+	[root@study ~]# poweroff  		# 系统关机，所以没有提供额外的电力，屏幕空白
+
+}
+
+
+
+pwd (显示当前所在的目录) {
+	[root@study ~]# pwd [-P]
+	选项与参数：
+	-P  ：显示出确实的路径，而非使用连结 (link) 路径。
+
+	范例：
+	[root@study ~]# pwd
+	/root   					
+			
+	# 显示出实际的工作目录，而非连结档本身的目录名而已
+	[root@study ~]# cd /var/mail   			# 注意，/var/mail是一个连结档
+	[root@study mail]# pwd
+	/var/mail         						
+	[root@study mail]# pwd -P
+	/var/spool/mail   						# 显示出非连结档本身的目录名
+	[root@study mail]# ls -ld /var/mail
+	lrwxrwxrwx. 1 root root 10 May  4 17:51 /var/mail -> spool/mail
+	# 看到這裡應該知道為啥了吧？因為 /var/mail 是連結檔，連結到 /var/spool/mail 
+	# 所以，加上 pwd -P 的選項後，會不以連結檔的資料顯示，而是顯示正確的完整路徑啊！
+}
+ 
+
+
+reboot (重启相关) {
+	[root@study ~]# sync; sync; sync; reboot
+
+}
+
+
+
+rmdir (删除空的目录) {
+	[root@study ~]# rmdir [-p] 目录名称
+	选项与参数：：
+	-p ：连同上层、空的目录也一起删除
+
+	范例：
+	[root@study tmp]# ls -ld test*   						# 看看有多少目錄存在？
+	drwxr-xr-x. 2 root   root  6 Jun  4 19:03 test
+	drwxr-xr-x. 3 root   root 18 Jun  4 19:04 test1
+	drwx--x--x. 2 root   root  6 Jun  4 19:05 test2
+	[root@study tmp]# rmdir test   							# 可直接刪除掉，沒問題
+	[root@study tmp]# rmdir test1  							# 因为尚有內容，所以無法刪除！
+	rmdir: failed to remove ‘test1’: Directory not empty
+	[root@study tmp]# rmdir -p test1/test2/test3/test4
+	[root@study tmp]# ls -ld test*    						# 您看看，底下的輸出中test與test1不見了！
+	drwx--x--x. 2 root   root  6 Jun  4 19:05 test2
+	# 瞧！利用 -p 這個選項，立刻就可以將 test1/test2/test3/test4 一次刪除～
+	# 不過要注意的是，這個 rmdir 仅能『刪除空的目录』喔！
+
+}
+
+
+
+shutdown (关机与重启相关) {
+	[root@study ~]# /sbin/shutdown [-krhc] [時間] [警告訊息]
+		选项与参数：
+	-k     ： 不要真的关机，只是发送警告讯息出去！
+	-r     ： 在將系統的服务停掉之后就重新开机(常用)
+	-h     ： 將系統的服务停掉后，立即关机。 (常用)
+	-c     ： 取消已经在进行的 shutdown 指令內容。
+	時間   ： 指定系统关机的时间！若沒有这个项目，则默认 1 分钟后自动进行。
+		
+		范例：
+	[root@study ~]# /sbin/shutdown -h 10 'I will shutdown after 10 mins'
+	Broadcast message from root@study.centos.vbird (Tue 2015-06-02 10:51:34 CST):
+
+	I will shutdown after 10 mins
+	The system is going down for power-off at Tue 2015-06-02 11:01:34 CST!
+
+	[root@study ~]# shutdown -h now				# 立即关机，now相当于时间为0
+
+	[root@study ~]# shutdown -h 20:25			# 系统在今天20:25 分会关机，若在21:25才下达此指令，则隔天才关机
+	
+	[root@study ~]# shutdown -h +10				# 系统再过10分钟后自动关机
+	
+	[root@study ~]# shutdown -r now				# 系统立刻重新开机
+	
+	[root@study ~]# shutdown -r +30 'The system will reboot' 		# 再过30分钟重新开机，并显示后面的讯息给所有在线上的使用者
+	
+	[root@study ~]# shutdown -k now 'This system will reboot' 		# 仅发出警告信息的参数，系统不会关机
+
+}
+
+
+
+sync (资料同步写入磁碟) {
+	[dmtsai@study ~]$ su -   	# 切换成root身份
+	Password:  					# 输入root密码
+	Last login: Mon Jun  1 16:10:12 CST 2015 on pts/0
+
+	[root@study ~]# sync		# 同步资料
+
+}
+
+
+
+sysemctl (系统管理工具) {
+	[root@study ~]# systemctl [指令]
+	指令項目包括如下：
+	halt       進入系統停止的模式，螢幕可能會保留一些訊息，這與你的電源管理模式有關
+	poweroff   進入系統關機模式，直接關機沒有提供電力喔！
+	reboot     直接重新開機
+	suspend    進入休眠模式
+
+	[root@study ~]# systemctl reboot    # 系統重新開機
+	[root@study ~]# systemctl poweroff  # 系統關機
+
+}
+
+
+
+uname (检查Linux核心与作业系统的位元版本) {
+	[dmtsai@study ~]$ uname -r   		# 查看核心版本
+	3.10.0-229.el7.x86_64
+	
+	[dmtsai@study ~]$ uname -m   		# 查看作业系统的位元版本
+	x86_64
+
+}
+
+
