@@ -1,0 +1,7 @@
+poweroff (关机相关) 
+
+
+{
+	[root@study ~]# poweroff  		# 系统关机，所以没有提供额外的电力，屏幕空白
+
+}

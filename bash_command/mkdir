@@ -1,0 +1,30 @@
+
+mkdir (创建新目录) 
+
+
+{
+	[root@study ~]# mkdir [-mp] 目录名称
+	选项与参数：
+	-m ：设定档案的权限。直接设定，不需要看预设权限(umask)的脸色
+	-p : 帮助你直接将所需要的目录（包含上层目录）递归创建
+	
+
+	范例：
+	[root@study ~]# cd /tmp
+	[root@study tmp]# mkdir test    					# 建立一名为 test 的新目录
+	[root@study tmp]# mkdir test1/test2/test3/test4
+	mkdir: cannot create directory ‘test1/test2/test3/test4’: No such file or directory
+	# 話說，系統告訴我們，沒可能建立這個目錄啊！就是沒有目錄才要建立的！見鬼嘛？
+	[root@study tmp]# mkdir -p test1/test2/test3/test4
+	# 原來是要建 test4 上層沒先建 test3 之故！加了這個 -p 的選項，可以自行幫你建立多層目錄！
+
+	范例：
+	[root@study tmp]# mkdir -m 711 test2				# 建立权限为rwx--x--x的目录
+	[root@study tmp]# ls -ld test*
+	drwxr-xr-x. 2 root   root  6 Jun  4 19:03 test
+	drwxr-xr-x. 3 root   root 18 Jun  4 19:04 test1
+	drwx--x--x. 2 root   root  6 Jun  4 19:05 test2
+	# 仔細看上面的權限部分，如果沒有加上 -m 來強制設定屬性，系統會使用預設屬性。
+	# 那麼你的預設屬性為何？這要透過底下介紹的 umask 才能瞭解喔！ ^_^
+
+}

@@ -1,0 +1,26 @@
+
+
+pwd (显示当前所在的目录) 
+
+
+{
+	[root@study ~]# pwd [-P]
+	选项与参数：
+	-P  ：显示出确实的路径，而非使用连结 (link) 路径。
+
+	范例：
+	[root@study ~]# pwd
+	/root   					
+			
+	# 显示出实际的工作目录，而非连结档本身的目录名而已
+	[root@study ~]# cd /var/mail   			# 注意，/var/mail是一个连结档
+	[root@study mail]# pwd
+	/var/mail         						
+	[root@study mail]# pwd -P
+	/var/spool/mail   						# 显示出非连结档本身的目录名
+	[root@study mail]# ls -ld /var/mail
+	lrwxrwxrwx. 1 root root 10 May  4 17:51 /var/mail -> spool/mail
+	# 看到這裡應該知道為啥了吧？因為 /var/mail 是連結檔，連結到 /var/spool/mail 
+	# 所以，加上 pwd -P 的選項後，會不以連結檔的資料顯示，而是顯示正確的完整路徑啊！
+}
+ 

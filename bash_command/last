@@ -1,0 +1,15 @@
+
+
+last (读取资料性文件,data) 
+
+
+
+{
+	root@heiniupiwik:/home/heiniu# last /var/log/wtmp
+
+	wtmp begins Mon Apr  2 15:17:51 2018
+
+	root@heiniupiwik:/home/heiniu# cat /var/log/wtmp
+	# 乱码
+	
+}

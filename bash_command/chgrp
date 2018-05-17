@@ -1,0 +1,18 @@
+
+chgrp 改变文件或目录所属群组
+
+
+{
+	语法：
+	[root@study ~]# chgrp [-R] dirname/filename ...
+	选项和参数：
+		-R：进行递回（recursive）的持续变更，即连同此目录下的所有档案、目录都更新成为这个群组的意思。常常用在变更某一目录内所有档案的情况。
+	
+	范例：
+	[root@study ~]# chgrp users initial-setup-ks.cfg
+	[root@study ~]# ls -l
+	-rw-r--r--. 1 root users 1864 May  4 18:01 initial-setup-ks.cfg
+	
+	[root@study ~]# chgrp testing initial-setup-ks.cfg
+	chgrp: invalid group:  'testing'			 # 发生错误讯息，找不到此群组名
+}

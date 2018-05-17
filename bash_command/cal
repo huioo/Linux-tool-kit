@@ -1,0 +1,29 @@
+
+cal 日历
+
+{
+	cal（calendar）这个命令可以做的事情有很多。
+	cal 2018 ： 显示整年的月历情况。
+	cal 这个指令的语法为：cal [month] [year]。
+
+	[dmtsai@study ~]$ cal
+		 April 2018       
+	Su Mo Tu We Th Fr Sa  
+	 1  2  3  4  5  6  7  
+	 8  9 10 11 12 13 14  
+	15 16 17 18 19 20 21  
+	22 $<2>23$<2> 24 25 26 27 28  
+	29 30 
+	
+	[dmtsai@study ~]$ cal 4 2018
+		 April 2018       			# 显示2018年4月的月历
+	Su Mo Tu We Th Fr Sa  
+	 1  2  3  4  5  6  7  
+	 8  9 10 11 12 13 14  
+	15 16 17 18 19 20 21  
+	22 $<2>23$<2> 24 25 26 27 28
+	
+	[dmtsai@study ~]$ cal 13 2018
+	cal: 13 is neither a month number (1..12) nor a name  	# 提示13月不是一个月份
+
+}

@@ -1,0 +1,62 @@
+
+
+
+info 查询指令用法或文件格式)
+
+
+{
+	按鍵					進行工作
+	空白鍵					向下翻一頁
+	[Page Down]				向下翻一頁
+	[Page Up]				向上翻一頁
+	[tab]					在 node 之間移動，有 node 的地方，通常會以 * 顯示。
+	[Enter]					當游標在 node 上面時，按下 Enter 可以進入該 node 。
+	b						移動游標到該 info 畫面當中的第一個 node 處
+	e						移動游標到該 info 畫面當中的最後一個 node 處
+	n						前往下一個 node 處
+	p						前往上一個 node 處
+	u						向上移動一層
+	s(/)					在 info page 當中進行搜尋
+	h, ?					顯示求助選單
+	q						結束這次的 info page
+
+	[dmtsai@study ~]$ info info
+	File: dir,      Node: Top,      This is the top of the INFO tree.
+
+	This is the Info main menu (aka directory node).
+	A few useful Info commands:
+
+	  'q' quits;
+	  '?' lists all Info commands;
+	  'h' starts the Info tutorial;
+	  'mTexinfo RET' visits the Texinfo manual, etc.
+
+	* Menu:
+
+	Basics
+	* Common options: (coreutils)Common options.
+	* Coreutils: (coreutils).       Core GNU (file, text, shell) utilities.
+	* Date input formats: (coreutils)Date input formats.
+	* Ed: (ed).                     The GNU line editor
+	* File permissions: (coreutils)File permissions.
+									Access modes.
+	* Finding files: (find).        Operating on files matching certain criteria.
+
+	C++ libraries
+	* autosprintf: (autosprintf).   Support for printf format strings in C++.
+
+	Compression
+	* Gzip: (gzip).                 General (de)compression of files (lzw).
+
+	Development
+	* libffi: (libffi).             Portable foreign-function interface library.
+
+	Editors
+	* nano: (nano).                 Small and friendly text editor.
+
+	General Commands
+	* Screen: (screen).             Full-screen window manager.
+	
+	······
+
+}

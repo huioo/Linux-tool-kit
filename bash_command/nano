@@ -1,0 +1,27 @@
+
+
+nano (文本编辑器) {
+	
+	指数符号（^）代表键盘（Ctrl）按键；符号（M-）代表键盘（Alt）按键；
+	
+	[dmtsai@study ~]$ nano text.txt
+	  GNU nano 2.5.3                                                        File: text.txt  
+
+	  
+	
+                                                                                                [ New File ]
+	^G Get Help      ^O Write Out     ^W Where Is      ^K Cut Text      ^J Justify       ^C Cur Pos       ^Y Prev Page     M-\ First Line   M-W WhereIs Next ^^ Mark Text     M-} Indent Text  M-U Undo
+	^X Exit          ^R Read File     ^\ Replace       ^U Uncut Text    ^T To Spell      ^_ Go To Line    ^V Next Page     M-/ Last Line    M-] To Bracket   M-^ Copy Text    M-{ Unindent TextM-E Redo
+	
+	Ctrl+G：取得线上说明（帮助）；
+	Ctrl+X：离开nano软件，若有修改过文件会提示是否需要存储；
+	Ctrl+O：存储文件，若有权限的话就能够存储文件了；
+	Ctrl+R：从其他文件读入数据，可以将某个文件的内容粘贴在本文件中；
+	Ctrl+W：搜寻字符串；
+	Ctrl+C：显示目前游标所在处的行数与列数等咨询；
+	Ctrl+_：可以直接输入行号，让游标移动到该行；
+	Alt+Y：校正语法功能开启或关闭（按一下开，按一下关）；
+	Alt+M：支持鼠标移动游标；
+
+	
+}

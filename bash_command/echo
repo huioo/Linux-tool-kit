@@ -1,0 +1,18 @@
+
+
+
+echo 显示、打印信息/字符)
+
+
+{
+	范例：
+	[root@study ~]# echo $PATH				# 打印环境变量 PATH
+	/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+
+	范例：
+	[root@study ~]# exit    				# 由之前的 su - 離開，變回原本的帳號！或再取得一個終端機皆可！
+	[dmtsai@study ~]$ echo $PATH
+	/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/dmtsai/.local/bin:/home/dmtsai/bin
+	# 記不記得我們前一章說過，目前 /bin 是連結到 /usr/bin 當中的喔！
+
+}

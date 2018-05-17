@@ -1,0 +1,7 @@
+reboot (重启相关) 
+
+
+{
+	[root@study ~]# sync; sync; sync; reboot
+
+}

@@ -1,0 +1,25 @@
+
+
+rmdir (删除空的目录) 
+
+
+{
+	[root@study ~]# rmdir [-p] 目录名称
+	选项与参数：：
+	-p ：连同上层、空的目录也一起删除
+
+	范例：
+	[root@study tmp]# ls -ld test*   						# 看看有多少目錄存在？
+	drwxr-xr-x. 2 root   root  6 Jun  4 19:03 test
+	drwxr-xr-x. 3 root   root 18 Jun  4 19:04 test1
+	drwx--x--x. 2 root   root  6 Jun  4 19:05 test2
+	[root@study tmp]# rmdir test   							# 可直接刪除掉，沒問題
+	[root@study tmp]# rmdir test1  							# 因为尚有內容，所以無法刪除！
+	rmdir: failed to remove ‘test1’: Directory not empty
+	[root@study tmp]# rmdir -p test1/test2/test3/test4
+	[root@study tmp]# ls -ld test*    						# 您看看，底下的輸出中test與test1不見了！
+	drwx--x--x. 2 root   root  6 Jun  4 19:05 test2
+	# 瞧！利用 -p 這個選項，立刻就可以將 test1/test2/test3/test4 一次刪除～
+	# 不過要注意的是，這個 rmdir 仅能『刪除空的目录』喔！
+
+}

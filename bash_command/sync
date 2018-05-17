@@ -1,0 +1,13 @@
+
+
+sync (资料同步写入磁碟) 
+
+
+{
+	[dmtsai@study ~]$ su -   	# 切换成root身份
+	Password:  					# 输入root密码
+	Last login: Mon Jun  1 16:10:12 CST 2015 on pts/0
+
+	[root@study ~]# sync		# 同步资料
+
+}

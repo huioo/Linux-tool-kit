@@ -1,0 +1,24 @@
+
+
+locale (列出系统语言环境)
+
+
+
+{
+	[dmtsai@study ~]$ locale
+	LANG=en_US.UTF-8					# 语言语系的输出
+	LC_CTYPE="en_US.UTF-8"				# 底下为许多资讯的输出使用的特别预习
+	LC_NUMERIC="en_US.UTF-8"
+	LC_TIME="en_US.UTF-8"				# 时间方面的语系资料
+	LC_COLLATE="en_US.UTF-8"
+	LC_MONETARY="en_US.UTF-8"
+	LC_MESSAGES="en_US.UTF-8"
+	LC_PAPER="en_US.UTF-8"
+	LC_NAME="en_US.UTF-8"
+	LC_ADDRESS="en_US.UTF-8"
+	LC_TELEPHONE="en_US.UTF-8"
+	LC_MEASUREMENT="en_US.UTF-8"
+	LC_IDENTIFICATION="en_US.UTF-8"
+	LC_ALL=								# 全部的资料同步更新的设定值
+
+}

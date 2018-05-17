@@ -1,0 +1,28 @@
+
+cd 切换工作目录，当前所在目录位置
+
+{
+
+	[dmtsai@study ~]$ su -  				# 先切换身份成为 root
+	语法：
+	[root@study ~]# cd [相對路徑或絕對路徑]
+	
+	[root@study ~]# cd ~dmtsai				# 切换到使用者 dmtsai 的家目录，即/home/dmtsai
+	
+	[root@study dmtsai]# cd ~				# 回到自己的家目录，即当前用户的家目录，此时为/root
+	
+	[root@study ~]# cd						# 没有加上任何路径，也还是代表回到自己家目录的意思
+	
+	[root@study ~]# cd ..					# 去到目前的上层目录，即 /root 的上层目录
+	
+	[root@study /]# cd -					# 
+	
+	[root@study ~]# cd /var/spool/mail		# 直接指定要去的完整路径名称
+	
+	[root@study mail]# cd ../postfix		# 相对路径的写法，由/var/spool/mail 去到/var/spool/postfix
+
+	[dmtsai@study ~]$ cd test
+	
+	[dmtsai@study test]$  					# 切换工作目录到test
+
+}

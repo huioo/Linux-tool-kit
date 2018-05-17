@@ -1,0 +1,37 @@
+
+chmod 改变文件或目录的权限属性
+
+
+{
+	语法：
+	chmod [-R] xyz 文件或目录
+	选项与参数：
+	xyz : 就是刚刚提到的数字类型的权限属性，为rwx 属性数值的相加。
+	-R：进行递回（recursive）的持续变更，即连同次目录下的所有档案都会变更。
+
+	chmod  u,g,o,a  +(加入),-(除去),=(設定)  r,w,x	档案或目录
+	
+	范例：
+	[root@study ~]# ls -al .bashrc
+	-rw-r--r--. 1 root root 176 Dec 29  2013 .bashrc		# 644
+	[root@study ~]# chmod 777 .bashrc
+	[root@study ~]# ls -al .bashrc
+	-rwxrwxrwx. 1 root root 176 Dec 29  2013 .bashrc		# 777
+
+	[root@study ~]# chmod  u=rwx,go=rx  .bashrc		# 设定权限为 -rwxr-xr-x
+	# 注意喔！那个 u=rwx,go=rx 是连在一起的，中间并沒有任何空白字元！
+	[root@study ~]# ls -al .bashrc
+	-rwxr-xr-x. 1 root root 176 Dec 29  2013 .bashrc
+	
+	[root@study ~]# ls -al .bashrc
+	-rwxr-xr-x. 1 root root 176 Dec 29  2013 .bashrc
+	[root@study ~]# chmod  a+w  .bashrc				# 只增加每个人均可写入的权限
+	[root@study ~]# ls -al .bashrc
+	-rwxrwxrwx. 1 root root 176 Dec 29  2013 .bashrc
+			
+	[root@study ~]# chmod  a-x  .bashrc				# 取消所有人的可执行权限
+	[root@study ~]# ls -al .bashrc
+	-rw-rw-rw-. 1 root root 176 Dec 29  2013 .bashrc
+	[root@study ~]# chmod 644 .bashrc  				# 測試完畢得要改回來喔！	
+
+}

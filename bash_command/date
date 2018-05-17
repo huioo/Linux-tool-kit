@@ -1,0 +1,16 @@
+
+
+date 日期，时区
+
+
+{
+	[dmtsai@study ~]$ date
+	Mon Apr 23 19:07:00 CST 2018		# 显示2018年的CST时区，星期一，四月等
+	
+	[dmtsai@study ~]$ date   +%Y/%m/%d
+	2018/04/23							# 显示特定格式的日期，使用date的格式化输出功能
+	
+	[dmtsai@study ~]$ date   +%H:%M
+	19:10
+
+}

@@ -1,0 +1,17 @@
+
+
+systemctl (系统管理工具)
+
+
+{
+	[root@study ~]# systemctl [指令]
+	指令項目包括如下：
+	halt       進入系統停止的模式，螢幕可能會保留一些訊息，這與你的電源管理模式有關
+	poweroff   進入系統關機模式，直接關機沒有提供電力喔！
+	reboot     直接重新開機
+	suspend    進入休眠模式
+
+	[root@study ~]# systemctl reboot    # 系統重新開機
+	[root@study ~]# systemctl poweroff  # 系統關機
+
+}

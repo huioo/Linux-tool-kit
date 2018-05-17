@@ -1,0 +1,13 @@
+
+
+uname 检查Linux核心与作业系统的位元版本
+
+
+{
+	[dmtsai@study ~]$ uname -r   		# 查看核心版本
+	3.10.0-229.el7.x86_64
+	
+	[dmtsai@study ~]$ uname -m   		# 查看作业系统的位元版本
+	x86_64
+
+}
